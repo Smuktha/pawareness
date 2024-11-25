@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phishing Simulations</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+       body {
+            background: #0A1828;
+            background-size: 200% 100%; /* Makes the gradient wider for animation */
+            color: #BFA181; /* Hacker green */
+            text-shadow: #BFA181;
+            animation: backgroundAnimation 10s infinite alternate;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: #178582; /* Turquoise */
+        }
+        .navbar-brand, .nav-link { 
+            color: #BFA181 !important; /* Gold */
+        }
+        .nav-link:hover {
+            color: #FFFFFF !important; /* White for hover effect */
+        }
+        .btn-primary {
+            background-color: #178582; /* Turquoise */
+            border-color: #178582; /* Turquoise */
+        }
+
+        @keyframes backgroundAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Phishing Awareness</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/learn">Learn</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/simulate">Simulations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Quiz Section -->
+    <div class="container mt-5">
+        <h1 class="mb-4">Phishing Simulation Test</h1>
+        <p>Identify whether the following examples are phishing or legitimate messages. Click on an answer to proceed.</p>
+
+        <!-- Quiz Content -->
+        <div id="quiz-container" class="mt-4">
+            <!-- Questions will be dynamically added here by JavaScript -->
+        </div>
+
+        <!-- Results -->
+        <div id="results" class="mt-5 text-center d-none">
+            <h2>Your Score: <span id="score"></span>/7</h2>
+            <button class="btn btn-primary mt-3" onclick="restartQuiz()">Try Again</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3 mt-5">
+        <p>© 2024 Phishing Awareness Campaign. All rights reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom Script -->
+    <div id="timer">Time Left: <span id="time">30</span> seconds</div>
+    <link rel="stylesheet" href="style.css">
+
+    <script>
+        const quizData = [
+            {
+                question: "You receive an email claiming you've won a $1,000 gift card, but it asks for your credit card details to claim the prize. Is this phishing or legitimate?",
+                options: ["Phishing", "Legitimate"],
+                answer: "Phishing"
+            },
+            {
+                question: "An email from your bank asks you to confirm your account by logging in via a link provided. The email uses your full name and account number. Is this phishing or legitimate?",
+                options: ["Phishing", "Legitimate"],
+                answer: "Phishing"
+            },
+            {
+                question: "A newsletter email from an online store you subscribed to includes a discount code for their products. Is this phishing or legitimate?",
+                options: ["Phishing", "Legitimate"],
+                answer: "Legitimate"
+            },
+            {
+                question: "You receive a message from someone you don't know, claiming to be from a tech support company. They ask you to install software to fix an issue on your computer. Is this phishing or legitimate?",
+                options: ["Phishing", "Legitimate"],
+                answer: "Phishing"
+            },
+            {
+                question: "You receive an email with an attachment claiming to be an invoice for a purchase you never made. The sender's email address looks strange. Is this phishing or legitimate?",
+                options: ["Phishing", "Legitimate"],
+                answer: "Phishing"
+            },
+            {
+                question: "An email from your bank with a warning about unusual activity in your account asks you to click a link to verify your information. Is this phishing or legitimate?",
+                options: ["Phishing", "Legitimate"],
+                answer: "Phishing"
+            },
+            {
+                question: "A pop-up window appears while you're browsing a website, claiming your computer is infected with a virus. It asks you to download software to fix the issue. Is this phishing or legitimate?",
+                options: ["Phishing", "Legitimate"],
+                answer: "Phishing",
+            }
+        ];
+
+        const quizContainer = document.getElementById("quiz-container");
+        const resultsContainer = document.getElementById("results");
+        const scoreContainer = document.getElementById("score");
+        let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            quizContainer.innerHTML = ""; // Clear the container
+            const questionData = quizData[currentQuestion];
+            const questionElement = document.createElement("div");
+            questionElement.classList.add("mb-4");
+            questionElement.innerHTML = `<h4>${questionData.question}</h4>`;
+
+            questionData.options.forEach(option => {
+                const button = document.createElement("button");
+                button.classList.add("btn", "btn-secondary", "m-2");
+                button.textContent = option;
+                button.onclick = () => checkAnswer(option, button); // Pass the button reference for later use
+                questionElement.appendChild(button);
+            });
+            quizContainer.appendChild(questionElement);
+        }
+
+        function checkAnswer(selectedOption, selectedButton) {
+            const buttons = document.querySelectorAll('.btn-secondary'); // Select all answer buttons
+            const correctAnswer = quizData[currentQuestion].answer;
+
+            if (selectedOption === correctAnswer) {
+                score++;
+                selectedButton.classList.add('btn-success');
+            } else {
+                // Add 'btn-danger' (red) class for wrong answer
+                selectedButton.classList.add('btn-danger');
+            }
+
+            // Disable all buttons after selection
+            buttons.forEach(button => {
+                button.disabled = true;
+            });
+
+            // Move to the next question or show results
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                setTimeout(loadQuestion, 1000); // Wait for 1 second before loading the next question
+            } else {
+                setTimeout(showResults, 1000); // Wait for 1 second before showing results
+            }
+        }
+
+        function showResults() {
+            quizContainer.classList.add("d-none");
+            resultsContainer.classList.remove("d-none");
+            scoreContainer.textContent = score;
+        }
+
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            resultsContainer.classList.add("d-none");
+            quizContainer.classList.remove("d-none");
+            loadQuestion();
+        }
+
+        loadQuestion();
+    </script>
+
+    <script>
+        let timeLeft = 30; // Time in seconds for the quiz timer
+        const timerElement = document.getElementById("time");
+
+        function updateTimer() {
+            if (timeLeft > 0) {
+                timeLeft--;
+                timerElement.textContent = timeLeft;
+            } else {
+                clearInterval(timerInterval);
+                alert("Time is up! Submitting your answers.");
+                submitQuiz();
+            }
+        }
+
+        const timerInterval = setInterval(updateTimer, 1000); // Updates every second
+
+        function submitQuiz() {
+            alert("Your score has been submitted.");
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn About Phishing</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body{
+            background-color:#0A1828;
+            color: #BFA181;     
+        }
+        .navbar {
+            background-color: #178582; /* Turquoise */
+        }
+        .navbar-brand, .nav-link { 
+            color: #BFA181 !important; /* Gold */
+        }
+        .nav-link:hover {
+            color: #FFFFFF !important; /* White for hover effect */
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background-color: #178582; /* Turquoise */
+            border-color: #178582; /* Turquoise */
+        }
+
+        /* Image padding */
+        img {
+            padding: 15px;  /* Adjust the value as needed */
+            border-radius: 8px;  /* Optional: adds rounded corners to the images */
+            background-color: #050505; /* Optional: background color for images */
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Phishing Awareness</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/learn">Learn</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/simulate">Simulations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Hero Section -->
+    <div class="container text-center mt-5">
+        <h1 class="display-4">Learn About Phishing</h1>
+        <p class="lead">Phishing is a common cyber attack method used by criminals to steal sensitive information. Learn how to recognize phishing attempts and protect yourself.</p>
+    </div>
+
+    <!-- Phishing Techniques Section -->
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Phishing Techniques</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <h4>Email Phishing</h4>
+                <p>Email phishing is one of the most common methods used in cyberattacks. Attackers send fraudulent emails that appear to be from trusted sources to steal sensitive information like login credentials and credit card details.</p>
+                <img src="{{ url_for('static', filename='images/emailp.jpg') }}" alt="Feature 1" width="500px" height="300px">
+            </div>
+            <div class="col-md-4">
+                <h4>Website Phishing</h4>
+                <p>Website phishing involves creating a fake website that looks like a legitimate one. Phishers trick users into entering personal details such as usernames, passwords, and payment information.</p>
+                <img src="{{ url_for('static', filename='images/wesitephishing.webp') }}" alt="Feature 1" width="500px" height="300px">
+            </div>
+            <div class="col-md-4">
+                <h4>SMS Phishing (Smishing)</h4>
+                <p>Smishing uses text messages to trick users into clicking malicious links or sharing sensitive information. These attacks often appear to be from legitimate institutions, such as banks or government agencies.</p>
+                <img src="{{ url_for('static', filename='images/Smishing-example-1.jpg') }}" alt="Feature 1" width="500px" height="300px">
+            </div>
+        </div>
+    </div>
+
+    <!-- Phishing Examples Section -->
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Phishing Examples</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Example 1: Fake Email</h4>
+                <p>This is an example of a phishing email that appears to be from a trusted bank, but the links lead to a malicious website.</p>
+                <img src="{{ url_for('static', filename='images/fake-stripe-email.png') }}" alt="Feature 1" width="500px" height="300px">
+            </div>
+            <div class="col-md-6">
+                <h4>Example 2: Fake Login Page</h4>
+                <p>This is an example of a phishing website that looks like the login page of a popular social media platform, designed to steal login credentials.</p>
+                <img src="{{ url_for('static', filename='images/Fig-3–-Fake-Microsoft-login-page-768x395.png') }}" alt="Feature 1" width="500px" height="300px">
+            </div>
+        </div>
+    </div>
+
+    <!-- Prevention Tips Section -->
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">How to Protect Yourself</h2>
+        <ul class="list-group">
+            <li class="list-group-item">Never click on links or download attachments from unknown or suspicious emails.</li>
+            <li class="list-group-item">Always check the sender's email address and look for signs of a fake sender.</li>
+            <li class="list-group-item">Look for HTTPS in the website URL to verify it's secure.</li>
+            <li class="list-group-item">Use two-factor authentication (2FA) for added security.</li>
+            <li class="list-group-item">Keep your software and antivirus programs updated.</li>
+        </ul>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3 mt-5">
+        <p>© 2024 Phishing Awareness Campaign. All rights reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
