@@ -5,7 +5,6 @@ app = Flask(__name__)
             
 quizData = [
     {
-
         "question": "You receive an email claiming you've won a $1,000 gift card, but it asks for your credit card details to claim the prize. Is this phishing or legitimate?",
         "options": ["Phishing", "Legitimate"],
         "answer": "Phishing"
@@ -68,6 +67,7 @@ def contact():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
 
 
 
